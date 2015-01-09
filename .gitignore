@@ -1,0 +1,6 @@
+**/target
+**/target*
+tutorial-webapp-tomcat-docker/target
+**/.classpath
+**/.project
+**/.settings/**/*
