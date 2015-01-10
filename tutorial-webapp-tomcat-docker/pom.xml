@@ -14,10 +14,20 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
-		    <groupId>cn.guoyukun.jdbc</groupId>
-		    <artifactId>oracle-ojdbc6</artifactId>
-		    <version>11.2.0.3.0</version>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.3-1102-jdbc4</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-dbcp2</artifactId>
+		    <version>2.0.1</version>
+		</dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+            <version>3.1</version>
+        </dependency>
 	</dependencies>
 
 	<build>

@@ -2,7 +2,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
 	id="WebApp_ID" version="3.0">
 	
 	<display-name>Tutorial App</display-name>
@@ -10,5 +10,15 @@
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
+	
+	<env-entry>
+		<description>FQN of the Items repository to be used.</description>
+		<env-entry-name>itemsRepositoryFQN</env-entry-name>
+		<env-entry-type>java.lang.String</env-entry-type>
+		<!--  
+		<env-entry-value>com.danidemi.tutorial.wtd.MemoryItemsDao</env-entry-value>
+		-->
+		<env-entry-value>com.danidemi.tutorial.wtd.JdbcItemsDao</env-entry-value>
+	</env-entry>
 	
 </web-app>

@@ -1,10 +1,11 @@
 package com.danidemi.tutorial.wtd;
 
-import java.awt.ItemSelectable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.commons.dbcp2.BasicDataSource;
 
 public class MemoryItemsDao implements ItemsDao {
 
@@ -27,6 +28,19 @@ public class MemoryItemsDao implements ItemsDao {
 			values.put(user, list);
 		}
 		return list;
+	}
+
+
+
+	@Override
+	public boolean needDatasource() {
+		return false;
+	}
+
+	@Override
+	public void setDatasource(BasicDataSource ds) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+    <!-- Specify a JDBC datasource -->
+    <!--  
+    <Resource name="jdbc/mydatabase" 
+              auth="Container"
+              type="javax.sql.DataSource" 
+              username="YOUR_USERNAME" 
+              password="YOUR_PASSWORD"
+              driverClassName="com.mysql.jdbc.Driver"
+              url="jdbc:mysql://mysql.metawerx.net:3306/YOUR_DATABASE_NAME?autoReconnect=true"
+              validationQuery="select 1"
+              maxActive="10" 
+              maxIdle="4"/>
+    -->
+    
+    <Resource name="jdbc/db" 
+              auth="Container"
+              type="javax.sql.DataSource" 
+              username="YOUR_USERNAME" 
+              password="YOUR_PASSWORD"
+              driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://10.10.10.10:1000/database"
+              maxActive="10" 
+              maxIdle="4"/>    
+
+</Context>
