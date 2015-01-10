@@ -41,12 +41,12 @@ public class Listener implements ServletContextListener {
 			if(itemsRepo.needDatasource()){
 				
 				BasicDataSource ds = new BasicDataSource();
-				ds.setDriverClassName("com.mysql.jdbc.Driver");
+				ds.setDriverClassName("org.postgresql.Driver");
 				ds.setUsername("postgres");
-				ds.setPassword("");
+				ds.setPassword("postgres");
 				String dbHost = props.getProperty("DB_PORT_5432_TCP_ADDR");
 				String dbPort = props.getProperty("DB_PORT_5432_TCP_PORT");
-				String dbName = props.getProperty("postgres");
+				String dbName = "postgres";
 				ds.setUrl( format("jdbc:postgresql://%s:%s/%s", dbHost, dbPort, dbName) );
 				
 		        // Create the Flyway instance

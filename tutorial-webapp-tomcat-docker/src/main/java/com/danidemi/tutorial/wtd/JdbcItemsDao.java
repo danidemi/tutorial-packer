@@ -20,11 +20,11 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
-public class JndiJdbcItemsDao implements ItemsDao {
+public class JdbcItemsDao implements ItemsDao {
 
 	private DataSource ds;
 
-	public JndiJdbcItemsDao() {
+	public JdbcItemsDao() {
 
 	}
 
@@ -32,7 +32,7 @@ public class JndiJdbcItemsDao implements ItemsDao {
 	public void addItem(String user, String valueToAdd) throws SQLException {
 		Connection conn = ds.getConnection();
 		PreparedStatement prepareStatement = conn
-				.prepareStatement("INSERT INTO ITEMS(user, item) VALUES ( ?, ? )");
+				.prepareStatement("INSERT INTO app_items(username, item) VALUES ( ?, ? )");
 		prepareStatement.setString(1, user);
 		prepareStatement.setString(2, valueToAdd);
 		prepareStatement.execute();
@@ -45,7 +45,7 @@ public class JndiJdbcItemsDao implements ItemsDao {
 			throws SQLException {
 		Connection conn = ds.getConnection();
 		PreparedStatement prepareStatement = conn
-				.prepareStatement("DELETE FROM ITEMS WHERE user = ? and item = ?");
+				.prepareStatement("DELETE FROM app_items WHERE username = ? and item = ?");
 		prepareStatement.setString(1, user);
 		prepareStatement.setString(2, valueToRemove);
 		prepareStatement.execute();
@@ -57,7 +57,7 @@ public class JndiJdbcItemsDao implements ItemsDao {
 	public List<String> items(String user) throws SQLException {
 		Connection conn = ds.getConnection();
 		PreparedStatement prepareStatement = conn
-				.prepareStatement("SELECT item FROM ITEMS WHERE user = ?");
+				.prepareStatement("SELECT item FROM app_items WHERE username = ?");
 		prepareStatement.setString(1, user);
 		ResultSet rs = prepareStatement.executeQuery();
 		ArrayList<String> r = new ArrayList<>();
