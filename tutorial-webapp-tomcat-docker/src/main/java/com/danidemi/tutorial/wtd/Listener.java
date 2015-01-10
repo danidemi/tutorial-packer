@@ -17,6 +17,8 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.flywaydb.core.Flyway;
 import org.omg.CORBA.Environment;
 
+import com.danidemi.jlubricant.utils.properties.EnvProperties;
+
 @WebListener
 public class Listener implements ServletContextListener {
 
@@ -29,7 +31,7 @@ public class Listener implements ServletContextListener {
 			Properties defaults = System.getProperties();
 			defaults.putAll( System.getenv() );
 			
-			Properties props = new Properties(defaults);
+			Properties props = new EnvProperties(defaults);
 			props.load( getClass().getResourceAsStream("/config.properties") );
 			
 			props.list(System.out);
@@ -42,11 +44,11 @@ public class Listener implements ServletContextListener {
 				
 				BasicDataSource ds = new BasicDataSource();
 				ds.setDriverClassName("org.postgresql.Driver");
-				ds.setUsername("postgres");
-				ds.setPassword("postgres");
-				String dbHost = props.getProperty("DB_PORT_5432_TCP_ADDR");
-				String dbPort = props.getProperty("DB_PORT_5432_TCP_PORT");
-				String dbName = "postgres";
+				ds.setUsername( props.getProperty("DB_USERNAME") );
+				ds.setPassword( props.getProperty("DB_PASSWORD") );
+				String dbHost = props.getProperty("DB_HOST");
+				String dbPort = props.getProperty("DB_PORT");
+				String dbName = props.getProperty("DB_NAME");
 				ds.setUrl( format("jdbc:postgresql://%s:%s/%s", dbHost, dbPort, dbName) );
 				
 		        // Create the Flyway instance

@@ -30,44 +30,50 @@ public class JdbcItemsDao implements ItemsDao {
 
 	@Override
 	public void addItem(String user, String valueToAdd) throws SQLException {
-		Connection conn = ds.getConnection();
-		PreparedStatement prepareStatement = conn
-				.prepareStatement("INSERT INTO app_items(username, item) VALUES ( ?, ? )");
-		prepareStatement.setString(1, user);
-		prepareStatement.setString(2, valueToAdd);
-		prepareStatement.execute();
-		prepareStatement.close();
-		conn.close();
+		try (Connection conn = ds.getConnection()) {
+			PreparedStatement prepareStatement = conn
+					.prepareStatement("INSERT INTO app_items(username, item) VALUES ( ?, ? )");
+			prepareStatement.setString(1, user);
+			prepareStatement.setString(2, valueToAdd);
+			prepareStatement.execute();
+			prepareStatement.close();
+		} catch (SQLException se) {
+			throw se;
+		}
 	}
 
 	@Override
 	public void removeItem(String user, String valueToRemove)
 			throws SQLException {
-		Connection conn = ds.getConnection();
-		PreparedStatement prepareStatement = conn
-				.prepareStatement("DELETE FROM app_items WHERE username = ? and item = ?");
-		prepareStatement.setString(1, user);
-		prepareStatement.setString(2, valueToRemove);
-		prepareStatement.execute();
-		prepareStatement.close();
-		conn.close();
+		try (Connection conn = ds.getConnection()) {
+			PreparedStatement prepareStatement = conn
+					.prepareStatement("DELETE FROM app_items WHERE username = ? and item = ?");
+			prepareStatement.setString(1, user);
+			prepareStatement.setString(2, valueToRemove);
+			prepareStatement.execute();
+			prepareStatement.close();
+		} catch (SQLException se) {
+			throw se;
+		}
 	}
 
 	@Override
 	public List<String> items(String user) throws SQLException {
-		Connection conn = ds.getConnection();
-		PreparedStatement prepareStatement = conn
-				.prepareStatement("SELECT item FROM app_items WHERE username = ?");
-		prepareStatement.setString(1, user);
-		ResultSet rs = prepareStatement.executeQuery();
-		ArrayList<String> r = new ArrayList<>();
-		while (rs.next()) {
-			r.add(rs.getString(1));
+		try (Connection conn = ds.getConnection()) {
+			PreparedStatement prepareStatement = conn
+					.prepareStatement("SELECT item FROM app_items WHERE username = ?");
+			prepareStatement.setString(1, user);
+			ResultSet rs = prepareStatement.executeQuery();
+			ArrayList<String> r = new ArrayList<>();
+			while (rs.next()) {
+				r.add(rs.getString(1));
+			}
+			prepareStatement.execute();
+			prepareStatement.close();
+			return r;
+		} catch (SQLException se) {
+			throw se;
 		}
-		prepareStatement.execute();
-		prepareStatement.close();
-		conn.close();
-		return r;
 	}
 
 	@Override

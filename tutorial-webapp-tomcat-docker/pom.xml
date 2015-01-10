@@ -28,9 +28,24 @@
             <artifactId>flyway-core</artifactId>
             <version>3.1</version>
         </dependency>
+        <dependency>
+        	<groupId>com.danidemi.jlubricant</groupId>
+        	<artifactId>jlubricant-utils</artifactId>
+        	<version>0.0.15-SNAPSHOT</version>
+        </dependency>
 	</dependencies>
 
 	<build>
+	
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+			<resource>
+				<directory>env/${my.environment}/</directory>
+			</resource>
+		</resources>
+	
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -42,5 +57,35 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+	
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+				<property>
+					<name>!specific</name>
+				</property>
+			</activation>
+			<properties>
+				<my.environment>dev</my.environment>
+			</properties>
+						
+		</profile>
+		
+		<profile>
+			<id>docker</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<my.environment>dockerized</my.environment>
+			</properties>
+									
+		</profile>
+		
+	</profiles>
+
 
 </project>
