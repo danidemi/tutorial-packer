@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<target>System.out</target>
+		<withJansi>false</withJansi>
+		<encoder>
+			<pattern>%d{dd HH:mm:ss.SSS} [%t] [%-5p] %m - %logger %F:%L%n
+			</pattern>
+		</encoder>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="console" />
+	</root>
+
+
+	<logger name="com.danidemi.europrice.jetty" level="WARN" />
+	<logger name="com.danidemi.jlubricant.embeddable.hsql" level="WARN" />
+
+</configuration>
+<!--
+# Pattern #
+* c{length} 
+* lo{length} 
+* logger{length}
+Outputs the name of the logger at the origin of the logging event.
+
+* C{length} 
+* class{length}
+Outputs the fully-qualified class name of the caller issuing the logging request.
+
+* contextName
+* cn
+Outputs the name of the logger context to which the logger at the origin of the event was attached to.
+
+* d{pattern} 
+* date{pattern} 
+* d{pattern, timezone} 
+* date{pattern, timezone}
+Used to output the date of the logging event. The date conversion word admits a pattern string as a parameter. 
+The pattern syntax is compatible with the format accepted by java.text.SimpleDateFormat.
+
+* F / file	
+Outputs the file name of the Java source file where the logging request was issued.
+
+* caller{depth} caller{depth, evaluator-1, ... evaluator-n}	
+Outputs location information of the caller which generated the logging event.
+
+* L / line	
+Outputs the line number from where the logging request was issued.
+
+* m / msg / message	
+Outputs the application-supplied message associated with the logging event.
+
+* M / method	
+Outputs the method name where the logging request was issued.
+
+* n	
+Outputs the platform dependent line separator character or characters.
+
+* p / le / level	
+Outputs the level of the logging event.
+
+* r / relative	
+Outputs the number of milliseconds elapsed since the start of the application until the creation of the logging event.
+
+* t / thread	
+Outputs the name of the thread that generated the logging event.
+
+* X{key:-defaultVal} 
+* mdc{key:-defaultVal} 
+Outputs the MDC (mapped diagnostic context) associated with the thread that generated the logging event.
+
+* ex{depth} 
+* exception{depth} 
+* throwable{depth} 
+* ex{depth, evaluator-1, ..., evaluator-n} 
+* exception{depth, evaluator-1, ..., evaluator-n} 
+* throwable{depth, evaluator-1, ..., evaluator-n}	
+Outputs the stack trace of the exception associated with the logging event, if any. By default the full stack trace will be output.
+
+* xEx{depth} 
+* xException{depth} 
+* xThrowable{depth} 
+* xEx{depth, evaluator-1, ..., evaluator-n} 
+* xException{depth, evaluator-1, ..., evaluator-n} 
+* xThrowable{depth, evaluator-1, ..., evaluator-n}	
+Same as the %throwable conversion word above with the addition of class packaging information.
+
+* nopex 
+* nopexception	
+Although it pretends to handle stack trace data, this conversion word does not output any data, thus, effectively ignoring exceptions.
+
+* marker	
+Outputs the marker associated with the logger request.
+
+* property{key}	
+Outputs the value associated with a property named key
+
+* replace(p){r, t}	
+Replaces occurrences of 'r', a regex, with its replacement 't' in the string produces by the sub-pattern 'p'. 
+For example, "%replace(%msg){'\s', ''}" will remove all spaces contained in the event message.
+
+* rEx{depth} 
+* rootException{depth} 
+* rEx{depth, evaluator-1, ..., evaluator-n} 
+* rootException{depth, evaluator-1, ..., evaluator-n}	
+Outputs the stack trace of the exception associated with the logging event, if any. 
+The root cause will be output first instead of the standard "root cause last".
+-->

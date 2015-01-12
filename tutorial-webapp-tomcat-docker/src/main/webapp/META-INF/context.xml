@@ -15,6 +15,7 @@
               maxIdle="4"/>
     -->
     
+    <!--  
     <Resource name="jdbc/db" 
               auth="Container"
               type="javax.sql.DataSource" 
@@ -24,5 +25,6 @@
               url="jdbc:postgresql://10.10.10.10:1000/database"
               maxActive="10" 
               maxIdle="4"/>    
+    -->
 
 </Context>
