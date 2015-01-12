@@ -50,6 +50,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
@@ -98,14 +99,24 @@
 		</profile>
 
 		<profile>
-			<id>dockerized</id>
+			<id>dockerized.db</id>
 			<activation>
 				<activeByDefault>false</activeByDefault>
 			</activation>
 			<properties>
-				<my.environment>dockerized</my.environment>
+				<my.environment>dockerized.db</my.environment>
 			</properties>
 		</profile>
+		
+		<profile>
+			<id>dockerized.memory</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<properties>
+				<my.environment>dockerized.memory</my.environment>
+			</properties>
+		</profile>		
 
 	</profiles>
 
